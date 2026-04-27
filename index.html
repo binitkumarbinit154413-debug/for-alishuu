@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You</title>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.text {
+    font-size: 2.5rem;
+    opacity: 0;
+    transition: 1s;
+    text-align: center;
+    max-width: 80%;
+}
+
+img {
+    width: 300px;
+    border-radius: 15px;
+    margin-top: 20px;
+    opacity: 0;
+    transition: 1s;
+}
+
+button {
+    margin-top: 30px;
+    padding: 10px 25px;
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: white;
+    color: black;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container" id="scene">
+    <div id="text" class="text"></div>
+    <img id="image" src="">
+    <button onclick="next()">CLICK HERE CUTIE</button>
+</div>
+
+<script>
+let step = 0;
+
+// scenes
+const scenes = [
+    { text: "You exist.", img: "" },
+    { text: "And thats why somehow… life got better.", img: "" },
+
+    { text: "This moment?", img: "photo1.jpg" },
+    { text: "Still one of my favorites.", img: "photo2.jpg" },
+
+    { text: "We’ve been through chaos.", img: "" },
+    { text: "And I know that time is recently not fair with you.", img: "" },
+    { text: "But believe me everything will be fine and I'll be there to cheer you fullest.", img: "" },
+
+    { text: "So yeah…", img: "" },
+    { text: "Happy Birthday Alishuu.", img: "" },
+    { text: "Stay exactly who you are.", img: "" },
+    { text: "And don't forget I LOB U MY BESTIE.", img: "" }
+];
+
+function next() {
+    const music = document.getElementById("bgMusic");
+
+    // play music on first click (browser rule)
+    if (step === 0) {
+        music.play();
+    }
+
+    if (step < scenes.length) {
+        const t = document.getElementById("text");
+        const i = document.getElementById("image");
+
+        t.style.opacity = 0;
+        i.style.opacity = 0;
+
+        setTimeout(() => {
+            t.innerText = scenes[step].text;
+            i.src = scenes[step].img || "";
+
+            t.style.opacity = 1;
+
+            if (scenes[step].img) {
+                i.style.opacity = 1;
+            }
+
+            step++;
+        }, 500);
+
+    } else {
+        document.body.innerHTML = `
+        <div class="container">
+            <div class="text" style="opacity:1;">
+                You make life less boring.<br><br>
+                That’s rare.
+            </div>
+        </div>`;
+    }
+}
+</script>
+
+</body>
+</html>
