@@ -134,6 +134,7 @@ const scenes = [
     { text: "And thats why somehow… life got better." },
 
     { text: "This moment?", type: "grid8" },
+    { text: "Still one of my favorites." },
 
     { text: "We’ve been through chaos." },
     { text: "And I know that time is recently not fair with you." },
@@ -198,6 +199,15 @@ function next() {
 
             step++;
         }, 500);
+    }
+    {
+        document.body.innerHTML = `
+        <div class="container">
+            <div class="text" style="opacity:1;">
+                You make life less boring.<br><br>
+                That’s rare.
+            </div>
+        </div>`;
     }
 }
 </script>
