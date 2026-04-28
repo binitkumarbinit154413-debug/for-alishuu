@@ -21,6 +21,7 @@ body {
     flex-direction: column;
 }
 
+/* TEXT ABOVE EVERYTHING */
 .text {
     font-size: 2.5rem;
     opacity: 0;
@@ -28,26 +29,32 @@ body {
     text-align: center;
     max-width: 80%;
     position: relative;
-    z-index: 2;
+    z-index: 3;
 }
 
+/* SINGLE IMAGE */
 .main-img {
     width: 300px;
     border-radius: 15px;
     margin-top: 20px;
     opacity: 0;
     transition: 1s;
+    position: relative;
+    z-index: 2;
 }
 
+/* ✅ GRID FIX */
 .grid {
-    position: absolute;
+    position: absolute;   /* 👈 removes from layout */
     width: 400px;
     height: 400px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
+/* IMAGES */
 .grid img {
     position: absolute;
     width: 90px;
@@ -58,6 +65,7 @@ body {
     transition: 1s;
 }
 
+/* POSITIONS */
 .g1 { top: 0; left: 150px; }
 .g2 { top: 50px; left: 300px; }
 .g3 { top: 150px; left: 310px; }
@@ -74,16 +82,18 @@ body {
 .h5 { top: 250px; left: 0; }
 .h6 { top: 80px; left: 0; }
 
+/* ✅ BUTTON FIX */
 button {
-    margin-top: 30px;
+    position: fixed;       /* 👈 always stays separate */
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
     padding: 10px 25px;
     border: 1px solid white;
-    background: transparent;
+    background: black;
     color: white;
     cursor: pointer;
-    position: relative;
-    z-index: 3;
-    transition: opacity 0.3s;
+    z-index: 4;
 }
 
 button:hover {
@@ -137,7 +147,7 @@ const scenes = [
     { text: "This moment?", type: "grid8" },
     { text: "Still one of my favorites." },
 
-    { text: "We’ve been through chaos." },
+    { text: "We've been through chaos." },
     { text: "And I know that time is recently not fair with you." },
     { text: "But believe me everything will be fine and I'll be there to cheer you fullest." },
 
@@ -175,7 +185,6 @@ function showGrid(id) {
 
 function next() {
     const music = document.getElementById("bgMusic");
-    const btn = document.querySelector("button");
 
     if (step === 0) {
         music.play();
@@ -194,13 +203,6 @@ function next() {
             t.innerText = scene.text;
             t.style.opacity = 1;
 
-            // ✅ CONTROL BUTTON VISIBILITY
-            if (scene.type === "grid8" || scene.type === "grid6") {
-                btn.style.opacity = 0;
-            } else {
-                btn.style.opacity = 1;
-            }
-
             if (scene.type === "grid8") {
                 showGrid("grid8");
             }
@@ -216,7 +218,7 @@ function next() {
 
             step++;
         }, 500);
-    }
+    } 
 }
 </script>
 
