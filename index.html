@@ -27,6 +27,8 @@ body {
     transition: 1s;
     text-align: center;
     max-width: 80%;
+    position: relative;
+    z-index: 2; /* 👈 keeps text above images */
 }
 
 .main-img {
@@ -37,10 +39,14 @@ body {
     transition: 1s;
 }
 
+/* ✅ FIXED GRID */
 .grid {
-    position: relative;
+    position: absolute; /* 👈 key fix */
     width: 400px;
     height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .grid img {
